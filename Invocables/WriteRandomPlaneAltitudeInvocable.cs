@@ -26,7 +26,7 @@ namespace app.Invocables
                     .Field("value", _random.Next(1000, 5000))
                     .Timestamp(DateTime.UtcNow, WritePrecision.Ns);
 
-                write.WritePoint(point, "test-bucket", "Bewell");
+                write.WritePoint(point, Settings.Settings.FluxConfiguration_Bucket, Settings.Settings.FluxConfiguration_OrganizationName);
             });
 
             return Task.CompletedTask;

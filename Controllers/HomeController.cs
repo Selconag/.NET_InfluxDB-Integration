@@ -19,8 +19,8 @@ public class HomeController : Controller
     {
         var results = await service.QueryAsync(async query =>
         {
-            var flux = "from(bucket:\"test-bucket\") |> range(start: 0)";
-            var tables = await query.QueryAsync(flux, "Bewell");
+            var flux = $"from(bucket:\"{Settings.Settings.FluxConfiguration_Bucket}\") |> range(start: 0)";
+            var tables = await query.QueryAsync(flux, Settings.Settings.FluxConfiguration_OrganizationName);
             return tables.SelectMany(table =>
                 table.Records.Select(record =>
                     new AltitudeModel
